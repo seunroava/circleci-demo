@@ -14,6 +14,7 @@ jobs:
           name: Create Service Account key file from environment variable
           working_directory: ~/circleci-demo
           command: echo ${TF_SERVICE_ACCOUNT_KEY} > gcp_account.json
+          command: pwd
       - run:
           name: Show Terraform version
           command: terraform version
