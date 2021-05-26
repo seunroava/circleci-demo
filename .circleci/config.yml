@@ -23,20 +23,20 @@ jobs:
           command: terraform version
       - run:
           name: Download required Terraform plugins
-          working_directory: ~/circleci-demo
-          command: terraform init
+          # working_directory: ~/circleci-demo
+          command: cd terraform && terraform init
       - run:
           name: Validate Terraform configuration
-          working_directory: ~/circleci-demo
-          command: terraform validate
+          # working_directory: ~/circleci-demo
+          command: cd terraform && terraform validate
       - run:
           name: Create Terraform plan
-          working_directory: ~/circleci-demo
-          command: terraform plan -out tf.plan
+          # working_directory: ~/circleci-demo
+          command: cd terraform && terraform plan -out tf.plan
       - run:
           name: Run Terraform apply
-          working_directory: ~/circleci-demo
-          command: terraform apply tf.plan
+          # working_directory: ~/circleci-demo
+          command: cd terraform && terraform apply tf.plan
   k8s_deploy:
     docker:
       - image: kiwigrid/gcloud-kubectl-helm:3.0.1-272.0.0-218
