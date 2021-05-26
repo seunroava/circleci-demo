@@ -7,7 +7,7 @@ terraform {
   }
 }
 provider "google" {
-  credentials = ".keys/gcp_account.json"
+  credentials = "../.keys/gcp_account.json"
   project     = "roava-io"
   region      = "us-central1"
 }
