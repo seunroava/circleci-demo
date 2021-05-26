@@ -1,0 +1,24 @@
+namespaceOverride: demo
+replicaCount: 1
+
+strategy: |
+  type: Recreate
+
+image:
+  repository: nginx
+  tag: latest
+
+webPort:
+  name: web
+  value: 52773
+
+service:
+  enabled: true
+  name: demo
+  type: LoadBalancer
+  loadBalancerIP: ""
+  ports:
+    web:
+      port: 52773
+      targetPort: 52773
+      protocol: TCP

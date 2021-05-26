@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "demo.name" . }}
+  labels:
+    app: {{ template "demo.name" . }}
+    chart: {{ template "demo.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    {{- .Values.strategy | nindent 4 }}
+  selector:
+    matchLabels:
+      app: {{ template "demo.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "demo.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        name: {{ template "demo.name" . }}
+        ports:
+        - containerPort: {{ .Values.webPort.value }}
+          name: {{ .Values.webPort.name }}
