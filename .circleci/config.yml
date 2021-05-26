@@ -12,26 +12,26 @@ jobs:
       - checkout
       - run:
           name: Create Service Account key file from environment variable
-          working_directory: circleci-demo
+          working_directory: ~/circleci-demo
           command: echo ${TF_SERVICE_ACCOUNT_KEY} > gcp_account.json
       - run:
           name: Show Terraform version
           command: terraform version
       - run:
           name: Download required Terraform plugins
-          working_directory: circleci-demo
+          working_directory: ~/circleci-demo
           command: terraform init
       - run:
           name: Validate Terraform configuration
-          working_directory: circleci-demo
+          working_directory: ~/circleci-demo
           command: terraform validate
       - run:
           name: Create Terraform plan
-          working_directory: circleci-demo
+          working_directory: ~/circleci-demo
           command: terraform plan -out tf.plan
       - run:
           name: Run Terraform apply
-          working_directory: circleci-demo
+          working_directory: ~/circleci-demo
           command: terraform apply tf.plan
   k8s_deploy:
     docker:
@@ -40,7 +40,7 @@ jobs:
       - checkout
       - run:
           name: Authorize gcloud on GKE
-          working_directory: helm
+          working_directory: ~/helm
           command: |
             echo ${GCLOUD_SERVICE_KEY} > gcloud-service-key.json
             gcloud auth activate-service-account --key-file=gcloud-service-key.json
@@ -53,7 +53,7 @@ jobs:
           command: kubectl get ns sandbox || kubectl create ns sandbox
       - run:
           name: Run Helm release deployment
-          working_directory: helm
+          working_directory: ~/helm
           command: |
             helm upgrade demo \
               --install \
