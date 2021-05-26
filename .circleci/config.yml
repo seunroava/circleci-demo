@@ -16,6 +16,9 @@ jobs:
           command: echo ${TF_SERVICE_ACCOUNT_KEY} > gcp_account.json
           command: pwd
       - run:
+          name: Confirm working directory
+          command: pwd
+      - run:
           name: Show Terraform version
           command: terraform version
       - run:
