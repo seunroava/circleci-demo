@@ -1,5 +1,5 @@
 namespaceOverride: demo
-replicaCount: 1
+replicaCount: 2
 
 strategy: |
   type: Recreate
