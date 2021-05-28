@@ -4,12 +4,12 @@ terraform {
   backend "gcs" {
     bucket      = "roava-io-terraform"
     prefix      = "terraform-circleci/state"
-    credentials = "../.keys/gcp_account.json"
+    credentials = "gcp_account.json"
   }
 }
 
 provider "google" {
-  credentials = "../.keys/gcp_account.json"
+  credentials = "gcp_account.json"
   project     = "roava-io"
   region      = "us-central1"
 }
