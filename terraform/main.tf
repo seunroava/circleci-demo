@@ -28,7 +28,7 @@ resource "google_container_node_pool" "preemptible_node_pool" {
   name     = "default-pool"
   location = "us-central1"
 
-  #cluster  = google_container_cluster.gke-cluster.name
+  cluster  = google_container_cluster.gke-cluster.name
   # In regional cluster (location is region, not zone) 
 
   node_count = 1
