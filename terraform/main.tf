@@ -1,15 +1,15 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 0.12.0"
 
   backend "gcs" {
     bucket      = "roava-io-terraform"
     prefix      = "terraform-circleci/state"
-    credentials = "${file(gcp_account.json)}"
+    #credentials = file("gcp_account.json")
   }
 }
 
 provider "google" {
-  credentials = "${file(gcp_account.json)}"
+  credentials = file("gcp_account.json")
   project     = "roava-io"
   region      = "us-central1"
 }
